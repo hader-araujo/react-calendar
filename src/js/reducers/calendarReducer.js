@@ -1,5 +1,5 @@
 export default function reducer(state={
-    selectedDate: "",
+    selectedDate: Date.now(),
     fetching: false,
     fetched: false,
     error: null,

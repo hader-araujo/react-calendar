@@ -27,7 +27,7 @@ export default class ByMonth extends React.Component {
         return (
             <div id="calendar">
                 <div id="show-calendar">
-                    <SetDate changeDate={this.changeDate.bind(this)} />
+                    <SetDate changeDate={this.changeDate.bind(this)} date={selectedDate} />
                     <FullDate date={selectedDate}/>
                 </div>
             </div>
