@@ -1,12 +1,20 @@
 import React from "react";
 
-export default class FullDate extends React.Component {
-    render(){
-        const { date } = this.props;
+import { getFullDate } from '../Utils/DateUtil';
 
+export default class FullDate extends React.Component {
+    constructor() {
+        super()
+    }
+
+    getSelectedDate(){
+        return getFullDate(this.props.selectedDate)
+    }
+
+    render(){
         return (
             <div>
-                <h4>{date}</h4>
+                <h4>{this.getSelectedDate()}</h4>
             </div>
         );
     }

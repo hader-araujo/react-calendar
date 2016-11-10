@@ -1,36 +1,77 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import { getNameDayOfWeek, getSnapshotOfMonth, getFullMonth, getFullYear, getFullDay } from '../Utils/DateUtil';
+
 export default class SetDate extends  React.Component {
     constructor() {
-        super();
+        super()
     }
 
-    componentDidMount(){
-        ReactDOM.findDOMNode(this.refs.inputDate).focus();
+    getSelectedDate(){
+        return this.props.selectedDate
     }
-    componentDidUpdate(){
-        ReactDOM.findDOMNode(this.refs.inputDate).focus();
+
+    month(){
+        return getFullMonth(this.getSelectedDate())
+    }
+
+    year(){
+        return getFullYear(this.getSelectedDate())
+    }
+
+    nameDayOfWeek(){
+        return getNameDayOfWeek().map( (d) => <li key={d}>{d}</li>)
+    }
+
+    getClassActiveDay(day){
+        const now = Date.now()
+        if (getFullYear(now) === this.year() &&
+            getFullMonth(now) === this.month() &&
+            getFullDay(now) == day
+        ){
+            return "active"
+        }else{
+            return "inactive"
+        }
+    }
+
+    snapshotOfMonth(){
+        return getSnapshotOfMonth(this.getSelectedDate()).map( (d, i) => <li key={i} className={this.getClassActiveDay(d)}>{d}</li>)
     }
 
     handleInputChange(e){
         const selectedDate = e.target.value;
         if (selectedDate) {
-            this.props.changeDate(selectedDate);
-
-            this.setState({selectedDate: ""});
+            this.props.changeDate(selectedDate)
+            this.setState({selectedDate: ""})
         }
     }
 
     render(){
-        const { date } = this.props;
 
         return (
 
             <div>
-                <div class="input-group">
-                    <input type="text" class="form-control" ref="inputDate" value={date} onChange={this.handleInputChange.bind(this)}/>
+                <div class="month">
+                    <ul>
+                        <li class="prev">&#10094;</li>
+                        <li class="next">&#10095;</li>
+                        <li>
+                            {this.month()} {this.year()}
+                        </li>
+                    </ul>
                 </div>
+
+                <ul class="weekdays">
+                    {this.nameDayOfWeek()}
+                </ul>
+
+                <ul class="days">
+                    {this.snapshotOfMonth()}
+                </ul>
+
+
             </div>
         );
     }

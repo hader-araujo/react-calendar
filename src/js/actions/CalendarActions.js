@@ -3,9 +3,8 @@ export function fetchDate() {
         type: "FETCH_DATE_FULFILLED",
         payload:
             {
-                selectedDate: ""
+                selectedDate: Date.now()
             }
-
     }
 }
 
