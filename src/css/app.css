@@ -1,4 +1,12 @@
+#calendar{
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */
+}
+
 ul {list-style-type: none;}
+
 body {font-family: Verdana, sans-serif;}
 
 .month, .weekdays, .days{
@@ -67,4 +75,8 @@ body {font-family: Verdana, sans-serif;}
     padding: 5px;
     background: #1abc9c;
     color: white !important
+}
+
+li.menu_link:hover {
+    cursor: pointer;
 }

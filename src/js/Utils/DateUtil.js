@@ -1,25 +1,25 @@
-import Moment from 'moment'
+import dateFormat from 'dateformat'
 
 class DateUtil {
-    static formatDate = "DD/MM/YYYY"
-    static formatMonth = "MMMM"
-    static formatYear = "YYYY"
-    static formatDay = "DD"
+    static formatDate = "dd/mm/yyyy"
+    static formatMonth = "mmmm"
+    static formatYear = "yyyy"
+    static formatDay = "dd"
 
     getFullDate(date){
-        return Moment(date).format(DateUtil.formatDate).toString()
+        return dateFormat(date, DateUtil.formatDate)
     }
 
     getFullMonth(date){
-        return Moment(date).format(DateUtil.formatMonth).toString()
+        return dateFormat(date, DateUtil.formatMonth)
     }
 
     getFullYear(date){
-        return Moment(date).format(DateUtil.formatYear).toString()
+        return dateFormat(date, DateUtil.formatYear)
     }
 
     getFullDay(date){
-        return Moment(date).format(DateUtil.formatDay).toString()
+        return dateFormat(date, DateUtil.formatDay)
     }
 
     getNameDayOfWeek(){
@@ -27,9 +27,6 @@ class DateUtil {
     }
 
     getSnapshotOfMonth(date){
-
-        date = new Date(date)
-
         const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate()
 
         const arrayOfDays = [...Array(lastDayOfMonth).keys()].map( (m) => ++m)

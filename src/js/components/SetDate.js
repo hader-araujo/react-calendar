@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 
 import { getNameDayOfWeek, getSnapshotOfMonth, getFullMonth, getFullYear, getFullDay } from '../Utils/DateUtil';
 
@@ -9,7 +8,35 @@ export default class SetDate extends  React.Component {
     }
 
     getSelectedDate(){
-        return this.props.selectedDate
+        return new Date(this.props.selectedDate)
+    }
+
+    setSelectedDate(newDate){
+        this.props.changeDate(newDate);
+    }
+
+    setNextMonthSelectedDate() {
+        const date = this.getSelectedDate()
+        date.setMonth(date.getMonth() + 1)
+        this.setSelectedDate(date)
+
+        console.log("setNextMonthSelectedDate" + date)
+    }
+
+    setPrevMonthSelectedDate() {
+        const date = this.getSelectedDate()
+        date.setMonth(date.getMonth() - 1)
+        this.setSelectedDate(date)
+
+        console.log("setPrevMonthSelectedDate" + date)
+    }
+
+    setDay(day) {
+        const date = this.getSelectedDate()
+        date.setDate(day)
+        this.setSelectedDate(date)
+
+        console.log("setDay" + date)
     }
 
     month(){
@@ -25,19 +52,19 @@ export default class SetDate extends  React.Component {
     }
 
     getClassActiveDay(day){
-        const now = Date.now()
+        const now = this.getSelectedDate()
         if (getFullYear(now) === this.year() &&
             getFullMonth(now) === this.month() &&
             getFullDay(now) == day
         ){
-            return "active"
+            return "menu_link active"
         }else{
-            return "inactive"
+            return "menu_link inactive"
         }
     }
 
     snapshotOfMonth(){
-        return getSnapshotOfMonth(this.getSelectedDate()).map( (d, i) => <li key={i} className={this.getClassActiveDay(d)}>{d}</li>)
+        return getSnapshotOfMonth(this.getSelectedDate()).map( (d, i) => <li key={i} className={this.getClassActiveDay(d)} onClick={this.setDay.bind(this, d)}>{d}</li>)
     }
 
     handleInputChange(e){
@@ -55,8 +82,8 @@ export default class SetDate extends  React.Component {
             <div>
                 <div class="month">
                     <ul>
-                        <li class="prev">&#10094;</li>
-                        <li class="next">&#10095;</li>
+                        <li class="prev menu_link" onClick={this.setPrevMonthSelectedDate.bind(this)}>&#10094;</li>
+                        <li class="next menu_link" onClick={this.setNextMonthSelectedDate.bind(this)}>&#10095;</li>
                         <li>
                             {this.month()} {this.year()}
                         </li>
@@ -75,4 +102,7 @@ export default class SetDate extends  React.Component {
             </div>
         );
     }
+}
+SetDate.defaultProps = {
+    selectedDate: Date.now()
 }
