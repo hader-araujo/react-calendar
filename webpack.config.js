@@ -5,7 +5,10 @@ var path = require('path');
 module.exports = {
   context: path.join(__dirname, "src"),
   devtool: debug ? "inline-sourcemap" : null,
-  entry: "./js/client.js",
+  entry: [
+         'webpack-dev-server/client?https://0.0.0.0:8080',
+        './js/client.js'
+    ],
   module: {
     loaders: [
       {
