@@ -6,6 +6,8 @@ import FullDate from "./FullDate";
 
 import { fetchDate, changeDate } from "../actions/CalendarActions"
 
+import { fetchHolidays } from "../actions/HolidaysActions"
+
 @connect((store) => {
     return {
         selectedDate : store.calendar.selectedDate
@@ -14,6 +16,7 @@ import { fetchDate, changeDate } from "../actions/CalendarActions"
 export default class ByMonth extends React.Component {
     componentWillMount() {
         this.props.dispatch(fetchDate())
+        fetchHolidays(this.props.dispatch.bind(this))
     }
 
     changeDate(newDate) {
@@ -22,6 +25,9 @@ export default class ByMonth extends React.Component {
 
     render(){
         const { selectedDate } = this.props;
+        
+        console.log(this.props)
+        
         return (
 
             <div id="calendar">
