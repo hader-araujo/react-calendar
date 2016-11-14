@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux"
 
-import SetDate from "../components/SetDate";
-import FullDate from "../components/FullDate";
+import Calendar from "./by-month/Calendar";
+import FullDate from "./FullDate";
 
 import { fetchDate, changeDate } from "../actions/CalendarActions"
 
@@ -26,7 +26,7 @@ export default class ByMonth extends React.Component {
 
             <div id="calendar">
                 <div id="show-calendar">
-                    <SetDate changeDate={this.changeDate.bind(this)} selectedDate={selectedDate} />
+                    <Calendar changeDate={this.changeDate.bind(this)} selectedDate={selectedDate} />
                     <FullDate selectedDate={selectedDate} />
                 </div>
             </div>
