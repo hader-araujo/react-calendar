@@ -1,6 +1,9 @@
 import React from "react";
+import moment from "moment";
 
-import { getNameDayOfWeek, getSnapshotOfMonth, getFullMonth, getFullYear, getFullDay } from '../Utils/DateUtil';
+import { getNameDayOfWeek, getSnapshotOfActualMonth, getSnapshotOfPrevMonth, getSnapshotOfNextMonth, getFullMonth, getFullYear, getFullDay } from '../Utils/DateUtil';
+
+
 
 export default class SetDate extends  React.Component {
     constructor() {
@@ -16,27 +19,39 @@ export default class SetDate extends  React.Component {
     }
 
     setNextMonthSelectedDate() {
-        const date = this.getSelectedDate()
-        date.setMonth(date.getMonth() + 1)
+        let date = this.getSelectedDate()
+        date = moment(date).add(1, 'months').toDate()
         this.setSelectedDate(date)
-
-        console.log("setNextMonthSelectedDate" + date)
     }
 
     setPrevMonthSelectedDate() {
-        const date = this.getSelectedDate()
-        date.setMonth(date.getMonth() - 1)
+        let date = this.getSelectedDate()
+        date = moment(date).subtract(1, 'months').toDate()
         this.setSelectedDate(date)
-
-        console.log("setPrevMonthSelectedDate" + date)
     }
 
     setDay(day) {
         const date = this.getSelectedDate()
         date.setDate(day)
         this.setSelectedDate(date)
-
-        console.log("setDay" + date)
+    }
+    
+    setDayOfPrevMonth(day) {
+        let date = this.getSelectedDate()
+        
+        date = moment(date).subtract(1, 'months').toDate()
+        date.setDate(day)
+        
+        this.setSelectedDate(date)   
+    }
+    
+    setDayOfNextMonth(day) {
+        let date = this.getSelectedDate()
+        
+        date = moment(date).add(1, 'months').toDate()
+        date.setDate(day)
+        
+        this.setSelectedDate(date)   
     }
 
     month(){
@@ -51,6 +66,10 @@ export default class SetDate extends  React.Component {
         return getNameDayOfWeek().map( (d) => <li key={d}>{d}</li>)
     }
 
+    getClassDiferentMonth() {
+        return "menu_link diferent_month"
+    }
+    
     getClassActiveDay(day){
         const now = this.getSelectedDate()
         if (getFullYear(now) === this.year() &&
@@ -64,7 +83,24 @@ export default class SetDate extends  React.Component {
     }
 
     snapshotOfMonth(){
-        return getSnapshotOfMonth(this.getSelectedDate()).map( (d, i) => <li key={i} className={this.getClassActiveDay(d)} onClick={this.setDay.bind(this, d)}>{d}</li>)
+        const arrayOfLi = []
+        
+        getSnapshotOfActualMonth(this.getSelectedDate())
+        .map( (d, i) => <li key={i + 'a'} className={this.getClassActiveDay(d)} onClick={this.setDay.bind(this, d)}>{d}</li>)
+        .forEach( (f) => arrayOfLi.push(f))
+        
+        getSnapshotOfPrevMonth(this.getSelectedDate())
+        .reverse()
+        .map( (d, i) => <li key={i + 'p'} className={this.getClassDiferentMonth()} onClick={this.setDayOfPrevMonth.bind(this, d)}>{d}</li>)
+        .forEach( (f) => arrayOfLi.unshift(f))
+        
+        getSnapshotOfNextMonth(this.getSelectedDate())
+        .reverse()
+        .map( (d, i) => <li key={i + 'n'} className={this.getClassDiferentMonth()} onClick={this.setDayOfNextMonth.bind(this, d)}>{d}</li>)
+        .forEach( (f) => arrayOfLi.push(f))
+        
+        
+        return arrayOfLi
     }
 
     handleInputChange(e){
