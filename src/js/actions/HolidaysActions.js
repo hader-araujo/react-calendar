@@ -1,18 +1,19 @@
 import axios from "axios"
 
-const url = 'https://holidayapi.com/v1/holidays?key=cc8c2a66-7922-48ec-bd4c-3b999be58f66&country=US&year='
+export function fetchHolidays(year, country, dispatch) {
 
-export function fetchHolidays(year, dispatch) {
+	const url = `https://holidayapi.com/v1/holidays?key=cc8c2a66-7922-48ec-bd4c-3b999be58f66&country=${country}&year=${year}`
 
-		console.log("------------------------ACCESSING URL " + url + year)
+		console.log("------------------------ACCESSING URL " + url)
 		
-        axios.get(url + year)
+        axios.get(url)
         .then(function (response) {
 			dispatch(
 				{
 					type: "FETCH_HOLIDAYS",
 					payload: {
 						year: year,
+						country: country,
 						holidays: JSON.stringify(response.data.holidays)
 					}
 				}

@@ -30,6 +30,7 @@ export default class Days extends  React.Component {
                     setSelectedDate={this.props.setSelectedDate}
                     getSelectedDate={this.props.getSelectedDate}
 					holidays={this.props.holidays}
+					filterType={this.props.filterType} 
                 />
                 
                 <DaysOfNextMonth

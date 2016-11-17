@@ -33,7 +33,7 @@ export default class Calendar extends  React.Component {
                 
                 <WeekDays />
                 
-                <Days holidays={this.props.holidays} month={this.month.bind(this)} year={this.year.bind(this)} setSelectedDate={this.setSelectedDate.bind(this)} getSelectedDate={this.getSelectedDate.bind(this)}/>
+                <Days holidays={this.props.holidays} filterType={this.props.filterType} month={this.month.bind(this)} year={this.year.bind(this)} setSelectedDate={this.setSelectedDate.bind(this)} getSelectedDate={this.getSelectedDate.bind(this)}/>
 
             </div>
         );

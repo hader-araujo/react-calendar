@@ -12,13 +12,16 @@ export default class DaysOfActualMonth extends  React.Component {
 		
 		const holidaysOfDay = this.props.holidays[dateFomated]
 		
+		let holidays = "";
 		if (holidaysOfDay){
-			const holidays = holidaysOfDay.filter( (elem) => ! elem["public"]).map( (elem) => elem.name).join()
-
-			return holidays
+			if (this.props.filterType == 'public'){
+				holidays = holidaysOfDay.filter( (elem) => elem["public"]).map( (elem) => elem.name).join()	
+			}else{
+				holidays = holidaysOfDay.map( (elem) => elem.name).join()
+			}
 		}
 		
-		return ""
+		return holidays
 	}
 	
     setDay(day, holiday) {

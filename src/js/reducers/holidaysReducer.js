@@ -11,7 +11,7 @@ export default function reducer(state={
 				...state, 
 				fetching: true
 			}
-			objectToReturn[action.payload.year] = JSON.parse(action.payload.holidays)
+			objectToReturn[`${action.payload.country}-${action.payload.year}`] = JSON.parse(action.payload.holidays)
 			
 			return objectToReturn
         }
