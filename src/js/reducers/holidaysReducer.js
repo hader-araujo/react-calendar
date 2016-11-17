@@ -1,5 +1,4 @@
 export default function reducer(state={
-    temp: '',
     fetching: false,
     fetched: false,
     error: null,
@@ -7,17 +6,23 @@ export default function reducer(state={
 
     switch (action.type) {
         case "FETCH_HOLIDAYS": {
-            return {...state, fetching: true}
+			
+			const objectToReturn = {
+				...state, 
+				fetching: true
+			}
+			objectToReturn[action.payload.year] = JSON.parse(action.payload.holidays)
+			
+			return objectToReturn
         }
         case "FETCH_HOLIDAYS_REJECTED": {
             return {...state, fetching: false, error: action.payload}
         }
         case "FETCH_HOLIDAYS_FULFILLED": {
-            return {
+			return {
                 ...state,
                 fetching: false,
                 fetched: true,
-                selectedDate: action.payload.selectedDate
             }
         }
     }

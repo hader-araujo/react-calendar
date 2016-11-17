@@ -2,12 +2,17 @@ import dateFormat from 'dateformat'
 import moment from "moment";
 
 class DateUtil {
-    static formatDate = "dd mmmm yyyy"
+    static formatDefault = "yyyy-mm-dd"
+	static formatDate = "dd mmmm yyyy"
     static formatMonth = "mmmm"
     static formatYear = "yyyy"
     static formatDay = "dd"
 
-    getFullDate(date){
+    getDefaultDate(date){
+        return dateFormat(date, DateUtil.formatDefault)
+    }
+	
+	getFullDate(date){
         return dateFormat(date, DateUtil.formatDate)
     }
 
@@ -93,6 +98,7 @@ Object.freeze(instance);
 
 module.exports = {
     getFullDate : instance.getFullDate,
+	getDefaultDate : instance.getDefaultDate,
     getNameDayOfWeek : instance.getNameDayOfWeek,
     getSnapshotOfActualMonth : instance.getSnapshotOfActualMonth,
     getSnapshotOfPrevMonth : instance.getSnapshotOfPrevMonth,

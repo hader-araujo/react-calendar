@@ -12,8 +12,8 @@ export default class Calendar extends  React.Component {
         return new Date(this.props.selectedDate)
     }
 
-    setSelectedDate(newDate){
-        this.props.changeDate(newDate);
+    setSelectedDate(newDate, holiday){
+        this.props.changeDate(newDate, holiday)
     }
 
     month(){
@@ -29,12 +29,11 @@ export default class Calendar extends  React.Component {
         return (
 
             <div>
-            
                 <Head month={this.month.bind(this)} year={this.year.bind(this)} setSelectedDate={this.setSelectedDate.bind(this)} getSelectedDate={this.getSelectedDate.bind(this)}/>
                 
                 <WeekDays />
                 
-                <Days month={this.month.bind(this)} year={this.year.bind(this)} setSelectedDate={this.setSelectedDate.bind(this)} getSelectedDate={this.getSelectedDate.bind(this)}/>
+                <Days holidays={this.props.holidays} month={this.month.bind(this)} year={this.year.bind(this)} setSelectedDate={this.setSelectedDate.bind(this)} getSelectedDate={this.getSelectedDate.bind(this)}/>
 
             </div>
         );

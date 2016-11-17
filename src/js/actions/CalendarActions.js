@@ -9,11 +9,12 @@ export function fetchDate() {
     }
 }
 
-export function changeDate(newDate) {
+export function changeDate(newDate, holiday) {
     return {
         type: "SET_DATE",
         payload: {
-            selectedDate : newDate
+            selectedDate : newDate,
+			holiday : holiday
         }
     }
 }

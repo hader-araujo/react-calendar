@@ -18,7 +18,6 @@
     "flux": "^2.1.1",
     "history": "^1.17.0",
     "moment": "^2.16.0",
-    "node-holidayapi": "^1.0.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
