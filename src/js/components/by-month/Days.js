@@ -29,7 +29,7 @@ export default class Days extends  React.Component {
                     year={this.props.year}
                     setSelectedDate={this.props.setSelectedDate}
                     getSelectedDate={this.props.getSelectedDate}
-					holidays={this.props.holidays}
+					getHolidays={this.props.getHolidays}
 					filterType={this.props.filterType} 
                 />
                 

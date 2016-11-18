@@ -1,29 +1,9 @@
 import React from "react";
 
-import { getSnapshotOfActualMonth, getFullMonth, getFullYear, getFullDay, getDefaultDate } from '../../../Utils/DateUtil';
+import { getSnapshotOfActualMonth, getFullMonth, getFullYear, getFullDay } from '../../../Utils/DateUtil';
 
 export default class DaysOfActualMonth extends  React.Component {
 
-	getHolidays(d) {
-		const date = this.props.getSelectedDate()
-		date.setDate(d)
-		
-		const dateFomated = getDefaultDate(date)
-		
-		const holidaysOfDay = this.props.holidays[dateFomated]
-		
-		let holidays = "";
-		if (holidaysOfDay){
-			if (this.props.filterType == 'public'){
-				holidays = holidaysOfDay.filter( (elem) => elem["public"]).map( (elem) => elem.name).join()	
-			}else{
-				holidays = holidaysOfDay.map( (elem) => elem.name).join()
-			}
-		}
-		
-		return holidays
-	}
-	
     setDay(day, holiday) {
         const date = this.props.getSelectedDate()
         date.setDate(day)
@@ -55,7 +35,7 @@ export default class DaysOfActualMonth extends  React.Component {
         
         getSnapshotOfActualMonth(this.props.getSelectedDate())
         .map( (d, i) =>{
-			const holiday = this.getHolidays(d)
+			const holiday = this.props.getHolidays(d)
 			
 			return <li key={i + 'actual'} className={this.getClassActiveDay(d, holiday)} onClick={this.setDay.bind(this, d, holiday)}>{d}</li>
 		})

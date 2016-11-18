@@ -6,6 +6,7 @@
 }
 
 ul {list-style-type: none;}
+ul.holiday-list{list-style-type: circle;}
 
 body {font-family: Verdana, sans-serif;}
 
