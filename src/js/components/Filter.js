@@ -1,7 +1,5 @@
 import React from "react";
 
-import { getFullDate } from '../Utils/DateUtil';
-
 export default class FullDate extends React.Component {
     constructor() {
         super()

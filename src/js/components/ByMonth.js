@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux"
+import * as toastr from "toastr"
 
 import Calendar from "./by-month/Calendar";
 import Filter from "./Filter";
@@ -23,6 +24,7 @@ import { setType, setCountry } from "../actions/FilterActions"
 	return {
         selectedDate,
 		holidays : JSON.parse(localStorage.getItem(holidayKey)),
+		holidaysError: store.holidays.error,
 		filterType : filterType,
 		filterCountry : filterCountry,
     };
@@ -40,15 +42,20 @@ export default class ByMonth extends React.Component {
 	}
 	
 	componentWillReceiveProps(nextProps) {
-		let { selectedDate, filterCountry } = nextProps
+		let { selectedDate, filterCountry, holidaysError } = nextProps
 		
 		const year = getFullYear(selectedDate)
 		const holidayKey = `${filterCountry}-${year}`
 		
-        if (! localStorage.getItem(holidayKey))
-		{
-            fetchHolidays(year, filterCountry, this.props.dispatch.bind(this))
-		} 
+        
+		if (holidaysError){
+			toastr.error(holidaysError, 'Error fetching the holidays ', {timeOut: 10000})
+		}else{
+			if (! localStorage.getItem(holidayKey))
+			{
+	            fetchHolidays(year, filterCountry, this.props.dispatch.bind(this))
+			}
+		}
 	}
 
     changeDate(newDate, holiday) {
@@ -62,11 +69,10 @@ export default class ByMonth extends React.Component {
 	setFilterCountry(value){
 		this.props.dispatch(setCountry(value))
 	}
-
+	
     render(){
         const { selectedDate, filterType, filterCountry } = this.props
 		let holidays = this.props.holidays || {}
-		const year = getFullYear(selectedDate)
 		
         return (
             <div id="calendar">
