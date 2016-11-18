@@ -60,7 +60,7 @@ export default class Calendar extends  React.Component {
                 
                 <Days getHolidays={this.getHolidays.bind(this)} filterType={this.props.filterType} month={this.month.bind(this)} year={this.year.bind(this)} setSelectedDate={this.setSelectedDate.bind(this)} getSelectedDate={this.getSelectedDate.bind(this)}/>
 
-				<HolidayList holidays={this.getHolidays(this.getActualDay())} />
+				<HolidayList holidays={this.getHolidays(this.getActualDay())} getSelectedDate={this.getSelectedDate.bind(this)} />
 				
             </div>
         );

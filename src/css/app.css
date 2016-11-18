@@ -95,3 +95,9 @@ body {font-family: Verdana, sans-serif;}
 li.menu_link:hover {
     cursor: pointer;
 }
+
+.fullDate{
+    color: blue;
+    font-size: 16px;
+    padding-top: 10px;
+}

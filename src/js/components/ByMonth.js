@@ -84,6 +84,3 @@ export default class ByMonth extends React.Component {
         );
     }
 }
-Calendar.defaultProps = {
-    holidays: {}
-}
