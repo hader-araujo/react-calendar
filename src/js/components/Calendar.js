@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux"
 import * as toastr from "toastr"
 
-import Calendar from "./by-month/Calendar";
+import ByMonth from "./by-month/ByMonth";
 import Filter from "./Filter";
 
 import {  getFullYear } from '../Utils/DateUtil';
@@ -27,9 +27,10 @@ import { setType, setCountry } from "../actions/FilterActions"
 		holidaysError: store.holidays.error,
 		filterType : filterType,
 		filterCountry : filterCountry,
+		calendarType : store.calendarType.type
     };
 })
-export default class ByMonth extends React.Component {
+export default class Calendar extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -71,14 +72,14 @@ export default class ByMonth extends React.Component {
 	}
 	
     render(){
-        const { selectedDate, filterType, filterCountry } = this.props
+        const { selectedDate, filterType, filterCountry, calendarType } = this.props
 		let holidays = this.props.holidays || {}
 		
         return (
             <div id="calendar">
                 <div id="show-calendar">
-                    <Filter setFilterType={this.setFilterType.bind(this)} setFilterCountry={this.setFilterCountry.bind(this)} filterType={filterType} filterCountry={filterCountry} />
-					<Calendar changeDate={this.changeDate.bind(this)} selectedDate={selectedDate} holidays={holidays} filterType={filterType} />
+                    <Filter setFilterType={this.setFilterType.bind(this)} setFilterCountry={this.setFilterCountry.bind(this)} filterType={filterType} filterCountry={filterCountry} calendarType={calendarType} />
+					<ByMonth changeDate={this.changeDate.bind(this)} selectedDate={selectedDate} holidays={holidays} filterType={filterType} calendarType={calendarType} />
                 </div>
             </div>
         );

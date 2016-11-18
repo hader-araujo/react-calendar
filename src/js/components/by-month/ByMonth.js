@@ -1,13 +1,21 @@
 import React from "react";
+import {renderIf} from 'react-render-if'
 
 import Head from "./Head"
 import WeekDays from "./WeekDays"
 import Days from "./Days"
 import HolidayList from "./HolidayList"
 
+import { CALENDAR_TYPE, HOLIDAY_TYPE } from "../../Utils/Consts"
+const { PUBLIC } = HOLIDAY_TYPE
+const { MONTHLY } = CALENDAR_TYPE
+
 import {  getFullMonth, getFullYear, getDefaultDate, getFullDay } from '../../Utils/DateUtil';
 
-export default class Calendar extends  React.Component {
+@renderIf(  
+  x => x.props.calendarType == MONTHLY
+)
+export default class ByMonth extends  React.Component {
 
     getSelectedDate(){
         return new Date(this.props.selectedDate)
@@ -35,8 +43,8 @@ export default class Calendar extends  React.Component {
 		
 		let holidays = "";
 		if (holidaysOfDay){
-			if (this.props.filterType == 'public'){
-				holidays = holidaysOfDay.filter( (elem) => elem["public"]).map( (elem) => elem.name).join()	
+			if (this.props.filterType == PUBLIC){
+				holidays = holidaysOfDay.filter( (elem) => elem[PUBLIC]).map( (elem) => elem.name).join()	
 			}else{
 				holidays = holidaysOfDay.map( (elem) => elem.name).join()
 			}
@@ -66,6 +74,6 @@ export default class Calendar extends  React.Component {
         );
     }
 }
-Calendar.defaultProps = {
+ByMonth.defaultProps = {
     selectedDate: Date.now()
 }

@@ -1,3 +1,6 @@
+import { ACTIONS_TYPE } from "../Utils/Consts"
+const { FETCH_HOLIDAYS, FETCH_HOLIDAYS_REJECTED, FETCH_HOLIDAYS_FULFILLED } = ACTIONS_TYPE
+
 export default function reducer(state={
     fetching: false,
     fetched: false,
@@ -5,7 +8,7 @@ export default function reducer(state={
 }, action) {
 
     switch (action.type) {
-        case "FETCH_HOLIDAYS": {
+        case FETCH_HOLIDAYS: {
 			
 			const objectToReturn = {
 				...state, 
@@ -15,10 +18,10 @@ export default function reducer(state={
 			
 			return objectToReturn
         }
-        case "FETCH_HOLIDAYS_REJECTED": {
+        case FETCH_HOLIDAYS_REJECTED: {
             return {...state, fetching: false, error: action.payload}
         }
-        case "FETCH_HOLIDAYS_FULFILLED": {
+        case FETCH_HOLIDAYS_FULFILLED: {
 			return {
                 ...state,
                 fetching: false,

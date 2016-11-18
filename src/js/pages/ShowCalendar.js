@@ -1,12 +1,12 @@
 import React from "react";
 
-import ByMonth from "../components/ByMonth";
+import Calendar from "../components/Calendar";
 
 export default class ShowCalendar extends React.Component {
     render(){
         return (
             <div>
-                <ByMonth/>
+                <Calendar/>
             </div>
         );
     }

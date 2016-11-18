@@ -1,12 +1,9 @@
 import { ACTIONS_TYPE } from "../Utils/Consts"
-const { SET_TYPE, SET_COUNTRY } = ACTIONS_TYPE
+const { SET_TYPE } = ACTIONS_TYPE
 
 export default function reducer(state={
-    fetching: false,
-    fetched: false,
-    error: null,
-	filterType : "All",
-	filterCountry : "AR"
+	type : "monthly"
+
 }, action) {
     switch (action.type) {
 		
@@ -14,12 +11,6 @@ export default function reducer(state={
             return {
                 ...state,
                 filterType: action.payload.type
-            }
-        }
-		case SET_COUNTRY: {
-            return {
-                ...state,
-                filterCountry: action.payload.country
             }
         }
     }
