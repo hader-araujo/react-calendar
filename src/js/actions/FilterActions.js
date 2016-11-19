@@ -1,9 +1,9 @@
 import { ACTIONS_TYPE } from "../Utils/Consts"
-const { SET_TYPE, SET_COUNTRY } = ACTIONS_TYPE
+const { SET_FILTER_TYPE, SET_FILTER_COUNTRY } = ACTIONS_TYPE
 
 export function setType(type) {
     return {
-        type: SET_TYPE,
+        type: SET_FILTER_TYPE,
         payload: {
             type : type
         }
@@ -12,7 +12,7 @@ export function setType(type) {
 
 export function setCountry(country) {
 	return {
-        type: SET_COUNTRY,
+        type: SET_FILTER_COUNTRY,
         payload: {
             country : country
         }

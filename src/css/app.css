@@ -96,8 +96,36 @@ li.menu_link:hover {
     cursor: pointer;
 }
 
+a.menu_link:link {
+    text-decoration: none;
+}
+
 .fullDate{
     color: blue;
     font-size: 16px;
     padding-top: 10px;
+}
+
+.months {
+    padding: 10px 0;
+    margin: 0;
+}
+
+.months li {
+    list-style-type: none;
+    display: inline-block;
+    width: 24%;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 1px;
+    font-size:16px;
+    
+    background: #d9dde2;
+    color: black;
+}
+
+.months li:hover{
+    background: #1abc9c;
+    color: white !important;
 }

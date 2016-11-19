@@ -31,6 +31,10 @@ class DateUtil {
     getNameDayOfWeek(){
         return ["Mo","Tu","We","Th","Fr","Sa","Su"]
     }
+    
+    getNameMonth(){
+        return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    }
 
     getSnapshotOfActualMonth(date){
         const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate()
@@ -100,6 +104,7 @@ module.exports = {
     getFullDate : instance.getFullDate,
 	getDefaultDate : instance.getDefaultDate,
     getNameDayOfWeek : instance.getNameDayOfWeek,
+    getNameMonth : instance.getNameMonth,
     getSnapshotOfActualMonth : instance.getSnapshotOfActualMonth,
     getSnapshotOfPrevMonth : instance.getSnapshotOfPrevMonth,
     getSnapshotOfNextMonth : instance.getSnapshotOfNextMonth,

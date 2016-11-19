@@ -1,8 +1,9 @@
 const actionsType = {
     FETCH_DATE_FULFILLED : "FETCH_DATE_FULFILLED",
     SET_DATE : "SET_DATE",
-    SET_TYPE : "SET_TYPE",
-    SET_COUNTRY : "SET_COUNTRY",
+    SET_CALENDAR_TYPE : "SET_CALENDAR_TYPE",
+    SET_FILTER_TYPE : "SET_FILTER_TYPE",
+    SET_FILTER_COUNTRY : "SET_FILTER_COUNTRY",
     FETCH_HOLIDAYS : "FETCH_HOLIDAYS",
     FETCH_HOLIDAYS_REJECTED : "FETCH_HOLIDAYS_REJECTED",
     FETCH_HOLIDAYS_FULFILLED : "FETCH_HOLIDAYS_FULFILLED",
@@ -12,7 +13,7 @@ const actionsType = {
 
 const holidayType = {
     ALL : "all",
-    public : "public"
+    PUBLIC : "public"
 }
 
 const calendarType = {

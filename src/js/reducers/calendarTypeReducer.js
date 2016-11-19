@@ -1,16 +1,17 @@
-import { ACTIONS_TYPE } from "../Utils/Consts"
-const { SET_TYPE } = ACTIONS_TYPE
+import { ACTIONS_TYPE, CALENDAR_TYPE } from "../Utils/Consts"
+const { SET_CALENDAR_TYPE } = ACTIONS_TYPE
+const { MONTHLY } = CALENDAR_TYPE
 
 export default function reducer(state={
-	type : "monthly"
+	calendarType : MONTHLY
 
 }, action) {
     switch (action.type) {
 		
-        case SET_TYPE: {
+        case SET_CALENDAR_TYPE: {
             return {
                 ...state,
-                filterType: action.payload.type
+                calendarType: action.payload.type
             }
         }
     }

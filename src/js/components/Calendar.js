@@ -2,13 +2,15 @@ import React from "react";
 import { connect } from "react-redux"
 import * as toastr from "toastr"
 
-import ByMonth from "./by-month/ByMonth";
+import ByMonth from "./ByMonth";
+import ByYear from "./ByYear";
 import Filter from "./Filter";
 
 import {  getFullYear } from '../Utils/DateUtil';
 import { fetchDate, changeDate } from "../actions/CalendarActions"
 import { fetchHolidays } from "../actions/HolidaysActions"
 import { setType, setCountry } from "../actions/FilterActions"
+import { setType as setCalendarType } from "../actions/CalendarTypeActions"
 
 @connect((store) => {
 	const selectedDate = store.calendar.selectedDate
@@ -27,7 +29,7 @@ import { setType, setCountry } from "../actions/FilterActions"
 		holidaysError: store.holidays.error,
 		filterType : filterType,
 		filterCountry : filterCountry,
-		calendarType : store.calendarType.type
+		calendarType : store.calendarType.calendarType
     };
 })
 export default class Calendar extends React.Component {
@@ -71,6 +73,18 @@ export default class Calendar extends React.Component {
 		this.props.dispatch(setCountry(value))
 	}
 	
+	setCalendarType(value){
+		this.props.dispatch(setCalendarType(value))
+	}
+	
+	getSelectedDate(){
+        return new Date(this.props.selectedDate)
+    }
+
+    setSelectedDate(newDate, holiday){
+        this.changeDate(newDate, holiday)
+    }
+    
     render(){
         const { selectedDate, filterType, filterCountry, calendarType } = this.props
 		let holidays = this.props.holidays || {}
@@ -79,7 +93,8 @@ export default class Calendar extends React.Component {
             <div id="calendar">
                 <div id="show-calendar">
                     <Filter setFilterType={this.setFilterType.bind(this)} setFilterCountry={this.setFilterCountry.bind(this)} filterType={filterType} filterCountry={filterCountry} calendarType={calendarType} />
-					<ByMonth changeDate={this.changeDate.bind(this)} selectedDate={selectedDate} holidays={holidays} filterType={filterType} calendarType={calendarType} />
+					<ByMonth getSelectedDate={this.getSelectedDate.bind(this)} setSelectedDate={this.setSelectedDate.bind(this)} selectedDate={selectedDate} holidays={holidays} filterType={filterType} calendarType={calendarType} setCalendarType={this.setCalendarType.bind(this)} />
+					<ByYear  getSelectedDate={this.getSelectedDate.bind(this)} setSelectedDate={this.setSelectedDate.bind(this)} calendarType={calendarType} setCalendarType={this.setCalendarType.bind(this)} />
                 </div>
             </div>
         );
