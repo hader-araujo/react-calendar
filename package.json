@@ -39,6 +39,9 @@
     "dev-c9": "webpack-dev-server --content-base src  --host $IP --port $PORT --inline --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": "4.6.1"
+  },
   "author": "",
   "license": "ISC"
 }
