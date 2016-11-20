@@ -5,3 +5,6 @@
 * cd react-calendar
 * npm install
 * npm run dev
+
+## To access the application
+  + url: http://localhost:8080
