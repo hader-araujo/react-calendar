@@ -13,12 +13,17 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
           presets: ['react', 'es2015', 'stage-0'],
           plugins: ['react-html-attrs', 'transform-decorators-legacy', 'transform-class-properties'],
         }
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: "style-loader!css-loader"
       },
       { test: /\.woff$/,   loader: "url-loader?limit=10000&minetype=application/font-woff" },
       { test: /\.ttf$/,    loader: "file-loader" },
